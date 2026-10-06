@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Missão IA</title>
+</head>
+<body>
+
+    <h1>Missão: Inteligência Artificial</h1>
+
+    <h2 id="pergunta"></h2>
+
+    <button onclick="responder(0)" id="opcao0"></button>
+    <br><br>
+
+    <button onclick="responder(1)" id="opcao1"></button>
+    <br><br>
+
+    <button onclick="responder(2)" id="opcao2"></button>
+    <br><br>
+
+    <p id="resultado"></p>
+
+    <button onclick="proxima()">Próxima pergunta</button>
+
+    <script>
+
+        let numeroPergunta = 0;
+        let pontos = 0;
+
+        let perguntas = [
+
+            {
+                pergunta: "O que é Inteligência Artificial?",
+                opcoes: [
+                    "Uma tecnologia que simula tarefas humanas",
+                    "Um jogo",
+                    "Uma rede social"
+                ],
+                resposta: 0
+            },
+
+            {
+                pergunta: "Devemos confiar em tudo que uma IA responde?",
+                opcoes: [
+                    "Sim",
+                    "Não, devemos verificar as informações",
+                    "Sempre"
+                ],
+                resposta: 1
+            },
+
+            {
+                pergunta: "Qual é uma forma segura de usar IA?",
+                opcoes: [
+                    "Compartilhar senhas",
+                    "Enviar dados pessoais",
+                    "Proteger informações pessoais"
+                ],
+                resposta: 2
+            }
+
+        ];
+
+
+        function mostrarPergunta() {
+
+            let atual = perguntas[numeroPergunta];
+
+            document.getElementById("pergunta").textContent =
+                atual.pergunta;
+
+            document.getElementById("opcao0").textContent =
+                atual.opcoes[0];
+
+            document.getElementById("opcao1").textContent =
+                atual.opcoes[1];
+
+            document.getElementById("opcao2").textContent =
+                atual.opcoes[2];
+
+            document.getElementById("resultado").textContent = "";
+
+        }
+
+
+        function responder(opcao) {
+
+            let atual = perguntas[numeroPergunta];
+
+            if (opcao === atual.resposta) {
+
+                pontos++;
+
+                document.getElementById("resultado").textContent =
+                    "Correto!";
+
+            } else {
+
+                document.getElementById("resultado").textContent =
+                    "Resposta errada!";
+
+            }
+
+        }
+
+
+        function proxima() {
+
+            numeroPergunta++;
+
+            if (numeroPergunta < perguntas.length) {
+
+                mostrarPergunta();
+
+            } else {
+
+                document.getElementById("pergunta").textContent =
+                    "Missão concluída!";
+
+                document.getElementById("opcao0").style.display = "none";
+                document.getElementById("opcao1").style.display = "none";
+                document.getElementById("opcao2").style.display = "none";
+
+                document.getElementById("resultado").textContent =
+                    "Você acertou " + pontos + " de " +
+                    perguntas.length + " perguntas.";
+
+            }
+
+        }
+
+
+        mostrarPergunta();
+
+    </script>
+
+</body>
+</html>
